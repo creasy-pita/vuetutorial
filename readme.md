@@ -49,7 +49,7 @@ VNode类型 有children 和 child 属性。 如果是预留的tag 比如 htmltag
 
 如下图 _vnode 是 `parent-component`标签这部分对应的vnode，它是在`_c('parent-component')`产生了_vnode.children[0].child这部分属性值
 
-![](E:\work\myproject\vue2\vuetutorial\imgs\2020-06-29_184646.png)
+![](imgs\2020-06-29_184646.png)
 
 
 
