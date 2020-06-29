@@ -1,0 +1,57 @@
+<html>
+   <head>
+      <title>VueJs Instance11</title>
+      <script type = "text/javascript" src = "js/vue.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js" integrity="sha256-S1J4GVHHDMiirir9qsXWc8ZWw74PHHafpsHp5PXtjTs=" crossorigin="anonymous"></script>      
+   </head>
+   <body>
+      <div id = "app">
+         <input type="button" @click="onClick" value="cmcm1">
+      </div>
+   </body>
+
+   <script type = "text/javascript">
+      new Vue({
+        el: "#app",
+        methods: {
+          onClick() {
+            //   axios({
+            //         url: 'http://192.168.20.227:10037/ZyDr/downloadZy?id=54&category=1',
+            //         method: 'GET',
+            //         responseType: 'blob',
+            //     }).then((response) => {
+            //       console.log(response);
+            //          var fileURL = window.URL.createObjectURL(new Blob([response.data]));
+            //          var fileLink = document.createElement('a');
+            //          const fileNameHeader = "content-disposition";
+            //          const suggestedFileName = response.headers[fileNameHeader];
+            //          console.log('filename', suggestedFileName);
+            //          fileLink.href = fileURL;
+            //          fileLink.setAttribute('download', 'file.zip');
+            //          document.body.appendChild(fileLink);
+   
+            //          fileLink.click();
+            //     });
+
+                axios
+                  .get(`http://192.168.20.227:10037/ZyDr/downloadZy?id=54&category=1`, {
+                     data: {
+                     firstName: 'Fred'
+                     },
+                     responseType: 'arraybuffer'
+                  })
+                  .then(response => {
+                     console.log(response);
+
+                     let blob = new Blob([response.data], { type: 'application/zip' });
+                     url = window.URL.createObjectURL(blob)
+
+                     window.open(url); // Mostly the same, I was just experimenting with different approaches, tried link.click, iframe and other solutions
+                  })
+
+          }
+      }
+      })
+      
+          </script>   
+</html>

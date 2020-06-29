@@ -1,0 +1,23 @@
+<html>
+    <head>
+        <title>VueJs component basic</title>
+        <script type = "text/javascript" src = "../js/vue.js"></script>
+    </head>
+    <div id="component-props-demo">
+<!-- kebab-case in HTML -->
+<blog-post initial-counter="hello"></blog-post>
+    </div>
+    <script type = "text/javascript">
+Vue.component('blog-post', {
+  // camelCase in JavaScript
+  props: ['initialCounter'],
+  data:function(){
+      return {counter:this.initialCounter}
+  },
+  template: '<div><h3>{{ initialCounter }}{{counter}}</h3><button v-on:click="initialCounter=\'000\'" v-on:dblclick="counter+=counter">change to 000</button></div>'
+});
+new Vue({
+        el:"#component-props-demo"
+    });
+    </script>
+</html>

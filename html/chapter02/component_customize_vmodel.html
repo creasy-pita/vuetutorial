@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <title>VueJs component basic</title>
+        <script type = "text/javascript" src = "../js/vue.js"></script>
+    </head>
+    <div id="component-props-demo">
+<!-- kebab-case in HTML -->
+<base-checkbox v-model="lovingVue" ></base-checkbox>
+{{ lovingVue }}
+    </div>
+    <script type = "text/javascript">
+Vue.component('base-checkbox', {
+  model: {
+    prop: 'checked',
+    event: 'checkchange'
+  },
+  props: {
+    checked: Boolean
+  },
+  template: `
+    <div><input
+      type="checkbox"
+      v-bind:checked="checked"
+      v-on:change="$emit('checkchange', $event.target.checked)"
+    >{{ checked }} </div>
+  `
+});
+new Vue({
+        el:"#component-props-demo",
+        data:{
+            lovingVue:false,
+            ooo:"sss"
+        }
+    });
+    </script>
+</html>

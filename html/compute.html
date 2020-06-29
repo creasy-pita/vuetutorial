@@ -1,0 +1,53 @@
+<html>
+   <head>
+      <title>VueJs Instance</title>
+      <script type = "text/javascript" src = "js/vue.js"></script>
+   </head>
+   <body>
+      <div id = "computed_props">
+            <div id = "computed_props">
+                    <h1 style = "background-color:gray;">Random No from computed property: {{getrandomno}}</h1>
+                    <h1>Random No from method: {{getrandomno1()}}</h1>
+                    <h1>Random No from method : {{getrandomno1()}}</h1>
+                    <h1  style = "background-color:gray;">Random No from computed property: {{getrandomno}}</h1>
+                    <h1  style = "background-color:gray;">Random No from computed property: {{getrandomno}}</h1>
+                    <h1  style = "background-color:gray;">Random No from computed
+                       property: {{getrandomno}}</h1>
+                    <h1>Random No from method: {{getrandomno1()}}</h1>
+                    <h1>Random No from method: {{getrandomno1()}}</h1>
+                 </div>
+         <input type = "text" v-model = "fullname" />
+         <h1>{{firstName}}</h1>
+         <h1>{{lastName}}</h1>
+      </div>
+      <script type = "text/javascript">
+         var vm = new Vue({
+            el: '#computed_props',
+            data: {
+               firstName : "Terry",
+               lastName : "Ben"
+            },
+            methods: {
+                getrandomno1 : function() {
+                  return Math.random();
+               }
+            },
+            computed :{
+               fullname : {
+                  get : function() {
+                     return this.firstName+" "+this.lastName;
+                  },
+                  set : function(name) {
+                     var fname = name.split(" ");
+                     this.firstName = fname[0];
+                     this.lastName = fname[1]
+                  }
+               },
+               getrandomno : function(){
+                  return Math.random();
+               }               
+            }
+         });
+      </script>
+   </body>
+</html>

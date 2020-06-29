@@ -1,0 +1,48 @@
+<html>
+    <head>
+        <title>VueJs component basic</title>
+        <script type = "text/javascript" src = "../js/vue.js"></script>
+    </head>
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../css/todolist.css" media="screen" />
+    <div id="app">
+        <h1>{{title}}</h1>
+        <input type="text" v-on:keyup.enter="addToDo" />
+        <ul>
+            <li v-for='todo in todos' >
+                <input type="checkbox" v-model='todo.done'/>
+                <del v-if='todo.done'>{{todo.text}}</del>
+                <span v-else>{{todo.text}}</span>
+                <button v-on:click='removeToDo(todo.id)'>X</button>
+            </li>
+        </ul>
+    </div>
+    <script type = "text/javascript">
+        new Vue(
+            {
+                el:"#app",
+                data:{
+                    title:'ToDos',
+                    todos:[
+                        {text:'todo1', done:true, id:Date.now()},
+                        {text:'todo2', done:false, id:Date.now()}
+                    ]
+                },
+                methods:{
+                    addToDo(event){
+                        this.todos.push({text:event.target.value,done:false, id:Date.now()});
+                        event.target.value='';
+                    },
+                    removeToDo(id){
+                        this.todos = this.todos.filter(todo => todo.id != id);
+                        // console.log(this.todos.length);
+                    },
+                    downloadwj(){
+                        
+                    }
+                }
+            }
+        );
+
+    </script>
+</html>

@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <title>VueJs component basic</title>
+        <script type = "text/javascript" src = "../js/vue.js"></script>
+    </head>
+    <div id="component-props-demo">
+<!-- kebab-case in HTML -->
+<blog-post title="hello!11" loglevel="danger"></blog-post>
+    </div>
+    <script type = "text/javascript">
+Vue.component('blog-post', {
+  // camelCase in JavaScript
+  props: {
+      title:String,
+      age:Number,
+      loglevel:{
+        validator: function (value) {
+            // The value must match one of these strings
+            return ['success', 'warning', 'danger'].indexOf(value) !== -1
+        }          
+      }
+  },
+  template: '<div><h3>{{ this.title }}</h3><button v-on:click="this.title=\'sss\'">change to 000</button></div>'
+});
+new Vue({
+        el:"#component-props-demo"
+    });
+    </script>
+</html>

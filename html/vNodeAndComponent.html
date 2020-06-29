@@ -1,0 +1,44 @@
+<html>
+   <head>
+      <title>VueJs component basic</title>
+      <script type = "text/javascript" src = "js/vue.js"></script>
+   </head>
+   <div id="components-demo">
+       <parent-component>
+       </parent-component>
+       <!--<child-component></child-component>-->
+   </div>
+
+  <script type = "text/javascript">
+  //
+var componenta = {
+//    components:{
+//        "child-component":componentb
+//    },
+        data:function () {
+            return {
+                title:"I'm parent component"
+            }
+        },
+        template:'<div><div>{{title}}</div></div>'
+    };
+var componentb = {
+
+    data:function () {
+        return {
+            title:"I'm child1 component"
+        }
+    },
+    template:'<div><div>{{title}}</div></div>'
+};
+debugger
+new Vue(
+    {
+        el:"#components-demo",
+        components:{
+            "parent-component":componenta
+        }
+  }
+);
+</script>
+</html>

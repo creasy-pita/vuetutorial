@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <title>VueJs component basic</title>
+        <script type = "text/javascript" src = "js/vue.js"></script>
+    </head>
+    <div id="blog-post-demo">
+        <blog-post 
+            v-for = "post in posts"
+            v-bind:key = "post.id"
+            v-bind:title = "post.title"
+            v-bind:index1 = "post.index"
+        >
+
+        </blog-post>
+    </div>
+    <script type = "text/javascript">
+        Vue.component('blog-post', {
+        props: ['title','index1'],
+        template: '<h3>{{ index1 }}:{{title}}</h3>'
+        });
+        new Vue({
+            el: '#blog-post-demo',
+            data: {
+                posts: [
+                { id: 1, title: 'My journey with Vue',index:0 },
+                { id: 2, title: 'Blogging with Vue' ,index:1},
+                { id: 3, title: 'Why Vue is so fun',index:2 }
+                ]
+            }
+        });
+    </script>
+</html>

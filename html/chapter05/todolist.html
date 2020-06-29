@@ -1,0 +1,47 @@
+<html>
+    <head>
+        <title>VueJs component basic</title>
+        <script type = "text/javascript" src = "../js/vue.js"></script>
+    </head>
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../css/todolist.css" media="screen" />
+    <div id="app">
+        <h1>{{title}}:</h1><input type="text" class="nes-input" placeholder="Add todo..." v-on:keyup.enter="addTodo">
+        <ul>
+            <!-- Remember that todos is the name of our array -->
+            <li v-for="todo in todos" class="flex">
+                <!-- <input type="checkbox" v-on:click="check(todo)" v-bind:checked="todo.done" /> -->
+                <input type="checkbox" v-model="todo.done" />
+                <del v-if="todo.done">{{ todo.text }}</del>
+                <span v-else>{{ todo.text }}</span>
+                <!-- <div class="space"></div> -->
+                <button class="nes-btn is-error padding" v-on:click="removeTodo(todo.id)">X</button>
+            </li>
+        </ul>
+    </div>
+    <script type = "text/javascript">
+new Vue({
+  el: "#app",
+  data: {
+      title: 'TODOS',
+      todos: [
+          { text: 'todo 1', done: false, id: Date.now() },
+          { text: 'todo 2', done: true, id: Date.now() + 1 }
+      ]
+  },
+  methods: {
+  	addTodo({target}){
+    	this.todos.push({text: target.value, done: false, id: Date.now()})
+      target.value = ''
+    },
+    removeTodo(id) {
+    	this.todos = this.todos.filter(todo => todo.id !== id)
+    },
+    check(todo){
+        todo.done = !todo.done;
+    }
+  }
+})
+
+    </script>
+</html>

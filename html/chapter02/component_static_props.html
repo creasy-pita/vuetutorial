@@ -1,0 +1,20 @@
+<html>
+    <head>
+        <title>VueJs component basic</title>
+        <script type = "text/javascript" src = "../js/vue.js"></script>
+    </head>
+    <div id="component-props-demo">
+<!-- kebab-case in HTML -->
+<blog-post post-title="hello!"></blog-post>
+    </div>
+    <script type = "text/javascript">
+Vue.component('blog-post', {
+  // camelCase in JavaScript
+  props: ['postTitle'],
+  template: '<div><h3>{{ postTitle }}</h3><button v-on:click="postTitle=\'000\'">change to 000</button></div>'
+});
+new Vue({
+        el:"#component-props-demo"
+    });
+    </script>
+</html>

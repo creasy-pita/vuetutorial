@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <title>VueJs component basic</title>
+        <script type = "text/javascript" src = "../js/vue.js"></script>
+    </head>
+    <div id="component-props-demo">
+<!-- kebab-case in HTML -->
+<div v-for="post in posts">
+    <blog-post v-bind:post1="post" ></blog-post>
+</div>
+    </div>
+    <script type = "text/javascript">
+Vue.component('blog-post', {
+  // camelCase in JavaScript
+  props: ['post1'],
+  template: '<div><h3>{{ post1.title }}:{{post1.content}}</h3><button v-on:click="post1.title=\'000\'">change to 000</button></div>'
+});
+new Vue({
+    el:"#component-props-demo"
+    ,data:{
+        posts:[
+            {title:'aaaa',content:'a1'},
+            {title:'bbbb',content:'b1'},
+            {title:'cccc',content:'c1'}
+        ]
+    }
+    });
+
+    </script>
+</html>
