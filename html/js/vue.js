@@ -3408,9 +3408,11 @@
       children = simpleNormalizeChildren(children);
     }
     var vnode, ns;
+    debugger
     if (typeof tag === 'string') {
       var Ctor;
       ns = (context.$vnode && context.$vnode.ns) || config.getTagNamespace(tag);
+      //ljq check is isHTMLTag(tag) || isSVG(tag)
       if (config.isReservedTag(tag)) {
         // platform built-in elements
         vnode = new VNode(
@@ -3418,7 +3420,7 @@
           undefined, undefined, context
         );
       } else if ((!data || !data.pre) && isDef(Ctor = resolveAsset(context.$options, 'components', tag))) {
-        // component
+        // Ctor 会从context.$options 获取到 tag（它的值是componentname） 对应的 component实例
         //调用render ,获取vnode
         vnode = createComponent(Ctor, data, context, children, tag);
       } else {
@@ -4048,6 +4050,7 @@
         var endTag = "vue-perf-end:" + id;
 
         mark(startTag);
+        //调用render() 生成vnode
         var vnode = vm._render();
         mark(endTag);
         measure(("vue " + name + " render"), startTag, endTag);
@@ -4062,7 +4065,7 @@
         vm._update(vm._render(), hydrating);
       };
     }
-
+    // 实例化一个??渲染Watcher, 在其回调函数中调用 updateComponent
     // we set this to vm._watcher inside the watcher's constructor
     // since the watcher's initial patch may call $forceUpdate (e.g. inside child
     // component's mounted hook), which relies on vm._watcher being already defined
@@ -4989,7 +4992,9 @@
       vm._self = vm;
       initLifecycle(vm);
       initEvents(vm);
+      debugger
       initRender(vm);
+      debugger
       callHook(vm, 'beforeCreate');
       initInjections(vm); // resolve injections before data/props
       initState(vm);
@@ -5070,6 +5075,7 @@
     ) {
       warn('Vue is a constructor and should be called with the `new` keyword');
     }
+    debugger
     this._init(options);
   }
 
@@ -11818,6 +11824,7 @@
     if (options.optimize !== false) {
       optimize(ast, options);
     }
+    // debugger
     var code = generate(ast, options);
     return {
       ast: ast,
@@ -11894,9 +11901,15 @@
           return this
         }
       } else if (el) {
+        // debugger
         template = getOuterHTML(el);
       }
       if (template) {
+        // debugger
+        //开始template 的解析，包括
+        // html解析器，html 解析为AST
+        // 优化器
+        // 代码生成器 把AST转化为代码字符串 比如：with(this) { return _c('div', { attrs: { "data": 111 } }, [_v(111)]) }
         /* istanbul ignore if */
         if (config.performance && mark) {
           mark('compile');
@@ -11921,6 +11934,7 @@
         }
       }
     }
+    debugger
     return mount.call(this, el, hydrating)
   };
 

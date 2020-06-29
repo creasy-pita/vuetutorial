@@ -4,9 +4,7 @@
       <script type = "text/javascript" src = "js/vue.js"></script>
    </head>
    <div id="components-demo">
-       <parent-component>
-       </parent-component>
-       <!--<child-component></child-component>-->
+       <parent-component></parent-component>
    </div>
 
   <script type = "text/javascript">
@@ -32,7 +30,7 @@ var componentb = {
     template:'<div><div>{{title}}</div></div>'
 };
 debugger
-new Vue(
+var app = new Vue(
     {
         el:"#components-demo",
         components:{
@@ -40,5 +38,6 @@ new Vue(
         }
   }
 );
+console.log(app);
 </script>
 </html>
