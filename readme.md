@@ -2,6 +2,38 @@
 
 ### 2020年7月5日
 
+#### 父组件向子组件传递方法的方式
+
+子组件的属性可以接收的方法
+
+父组件在methods或者data中定义方法
+
+父组件向子组件中的属性传递定义的方法
+
+#### 父子组件关系的构成要素，（父组件）引入，注册，使用（子组件）
+
+```html
+<template>
+  <div id="app">
+    <p>这里是app组件</p>
+    <!-- stpe3:使用 -->
+    <home></home>
+  </div>
+</template>
+
+<script>
+// step1: 引入
+import Home from './components/Home'
+export default {
+  name: 'App',
+  // step2: 注册
+  components: { Home }   
+}
+</script>
+```
+
+
+
 何时调用 new watcher(vm ,keypath,fn)
 
 fn 是 updatecomponent()
