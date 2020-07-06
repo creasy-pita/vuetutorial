@@ -1,5 +1,78 @@
 # vue js 练习，vuejs 源码调试笔记01
 
+
+
+### 2020年7月5日
+
+#### 父组件向子组件传递方法的方式
+
+子组件的属性可以接收的方法
+
+父组件在methods或者data中定义方法
+
+父组件向子组件中的属性传递定义的方法
+
+#### 父子组件关系的构成要素，（父组件）引入，注册，使用（子组件）
+
+```html
+<template>
+  <div id="app">
+    <p>这里是app组件</p>
+    <!-- stpe3:使用 -->
+    <home></home>
+  </div>
+</template>
+
+<script>
+// step1: 引入
+import Home from './components/Home'
+export default {
+  name: 'App',
+  // step2: 注册
+  components: { Home }   
+}
+</script>
+```
+
+
+
+何时调用 new watcher(vm ,keypath,fn)
+
+fn 是 updatecomponent()
+
+vue  initstate 之前已经对template解析成了render,即知道了哪些dom或component标签接触了，在initState 方法中去完成数据变化侦测的依赖收集
+
+render函数中的_c()函数，传入的是component标签时，会调用
+
+_c("parent-component") --> creatElm('parent-component') -->createComponent('parent-component') -->init()--> vue.$mount --> mountComponent() --> new Watcher
+
+vue 培训
+上次也大致的给一小部分讲过这部分的内容，但效果不太好。借鉴上次的不成功的培训，这次做了一下调整。
+
+臻善资源共享平台要做什么：可复用的组件
+	直接发布的专案：创建项目，编写项目，构建，发布
+	复用的组件：创建项目，编写项目，构建，发布到私仓
+	可视化管理用于复用的组件
+		提供界面上次编写
+复用的组件和直接发布区别在哪	
+	复用组件webpack后的样子，直接发布组件发布后的样子（上简单的chunk后的图）
+
+	这个是webpack的功劳，介绍什么是webpack,为什么使用webpack（因为 js,css，html才能浏览器引擎执行）
+webpack怎么用，他跟vuecli的关系
+	什么是入口文件
+
+	自加载函数
+	
+	什么是vuecli,会用到哪些内容
+
+缺点或一些限制（不能做的事情）
+以后可能的改进
+	部门的组件风格不同的解决
+		提供不同部门的vue脚手架模板
+			这块需要具体部门的同事协助完成
+
+讲的时候先串一边目录。
+
 ### 2020年7月1日
 
 #### **Dep.target**的作用是什么
