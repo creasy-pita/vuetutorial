@@ -1,5 +1,18 @@
 # vue js 练习，vuejs 源码调试笔记01
 
+### 2020年7月1日
+
+#### **Dep.target**的作用是什么
+
+在初始数据变化侦测后，某个对象A接触数据（的一部分）时
+
+1.  先对象A创建一个 watcher,
+2.  Dep.target=watcher
+3. 调用Object.defineProperty方法中的 get function中的 dep.depend()
+4. dep.depend() 中回把 Dep.target（也就是watcher）放入 dep.subs 数组中。
+5. 这样 数据，dep，watcher 就有了联系，当数据变化时 会通知到watcher,执行更新函数
+6. 更新函数在vue^2.0中就是 updatecomponent
+
 ### 2020年6月29日
 
 1 增加vNodeAndComponent.html ，用于调试vuejs的父子组件时，vNode的创建方式
